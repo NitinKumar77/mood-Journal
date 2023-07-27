@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Header() {
+  
   return (
     <div>
       <div className="Navbar flex  justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
@@ -41,7 +42,7 @@ function Header() {
           </NavLink>
         </div>
         <div className="register-button ">
-          <button class="bg-green-500 flex  p-4 justify-center items-center gap-4 rounded-[6.25rem] text-white  text-lg font-semibold leading-6  ">
+          <button className="bg-green-500 flex  p-4 justify-center items-center gap-4 rounded-[6.25rem] text-white  text-lg font-semibold leading-6  ">
             {" "}
             Register Mood
           </button>

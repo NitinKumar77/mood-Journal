@@ -3,6 +3,9 @@ import Glass from "../icons/Emoji Glass.png";
 import Thinking from "../icons/Emoji Thinking.png";
 import Notebook from "../icons/Emoji Notebook.png";
 import Tracking from "../icons/Emoji Tracking.png";
+import Smiley from "../icons/Smiley.svg";
+import SmileyMeh from "../icons/SmileyMeh.svg";
+import SmileySad from "../icons/SmileySad.svg";
 export const vectorOptionsData = [
   {
     icon: Notebook,
@@ -33,5 +36,20 @@ export const vectorOptionsData = [
     description: "Track your Progress",
     bg: "customOrange",
     position: "top-[25rem] left-[-5rem]",
+  },
+];
+
+export const cardData = [
+  {
+    icon: Smiley,
+    text: "Happy",
+  },
+  {
+    icon: SmileyMeh,
+    text: "Normal",
+  },
+  {
+    icon: SmileySad,
+    text: "Sad",
   },
 ];

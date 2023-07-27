@@ -11,7 +11,6 @@ export default function Modal() {
   function openModal() {
     setIsOpen(true);
   }
-
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center">
