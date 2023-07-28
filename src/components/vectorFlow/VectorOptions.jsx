@@ -1,10 +1,9 @@
 import React from "react";
 
-function VectorOptions({ icon, description, bg, position }) {
-  console.log(`bg-${bg}`);
+function VectorOptions({ icon, description, className }) {
   return (
     <div
-      className={`rounded-lg absolute ${position}  flex flex-col justify-center items-center gap-4 bg-${bg} shadow-lg w-[11.6rem] h-[6.37rem]`}
+      className={`rounded-lg absolute  flex flex-col justify-center items-center gap-4 ${className} shadow-lg w-[11.6rem] h-[6.37rem]`}
     >
       <img
         src={icon}
@@ -12,7 +11,7 @@ function VectorOptions({ icon, description, bg, position }) {
         width={"42px"}
         height={"40px"}
       />
-      <div className="text-black text-center  text-xs font-normal font-medium leading-normal">
+      <div className="text-black text-center  text-xs  font-medium leading-normal">
         {description}
       </div>
     </div>

@@ -22,7 +22,7 @@ function Table() {
           </span>
         </div>
       </div>
-      {moodsData.map((data) => (
+      {moodsData?.map((data) => (
         <div
           key={data.date}
           className={

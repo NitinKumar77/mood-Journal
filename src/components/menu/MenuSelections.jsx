@@ -23,7 +23,7 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Week")}
                   className={`${
-                    active ? "bg-green-500 text-white" : "text-gray-900"
+                    active ? "bg-defaultGreen text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Week
@@ -35,7 +35,7 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Month")}
                   className={`${
-                    active ? "bg-green-500 text-white" : "text-gray-900"
+                    active ? "bg-defaultGreen text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Month
@@ -49,7 +49,7 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Year")}
                   className={`${
-                    active ? "bg-green-500 text-white" : "text-gray-900"
+                    active ? "bg-defaultGreen text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Year
@@ -61,7 +61,7 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("All Time")}
                   className={`${
-                    active ? "bg-green-500 text-white" : "text-gray-900"
+                    active ? "bg-defaultGreen text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   All Time

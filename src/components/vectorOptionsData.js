@@ -10,31 +10,31 @@ export const vectorOptionsData = [
   {
     icon: Notebook,
     description: "Monitor Your Mood",
-    bg: "customNotebook",
+    bg: "bg-customNotebook",
     position: "left-[8rem] ",
   },
   {
     icon: Glass,
     description: "Identify Patterns",
-    bg: "customBlue",
+    bg: "bg-customBlue",
     position: "top-[15rem] left-[16rem]",
   },
   {
     icon: Thinking,
     description: "Develop Self-Awareness",
-    bg: "customGreen",
+    bg: "bg-customGreen",
     position: "top-[8rem] left-[36rem]",
   },
   {
     icon: Smile,
     description: "Improve your Mental Health",
-    bg: "customPurple",
+    bg: "bg-customPurple",
     position: "top-[33rem] right-[-36rem]",
   },
   {
     icon: Tracking,
     description: "Track your Progress",
-    bg: "customOrange",
+    bg: "bg-customOrange",
     position: "top-[25rem] left-[-5rem]",
   },
 ];

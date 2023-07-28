@@ -30,8 +30,7 @@ function VectorFLow() {
               description={option.description}
               key={option.description}
               icon={option.icon}
-              bg={option.bg}
-              position={option.position}
+              className={`${option.bg} ${option.position}`}
             />
           ))}
         </div>

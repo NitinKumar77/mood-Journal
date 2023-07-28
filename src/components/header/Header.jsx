@@ -45,7 +45,7 @@ function Header() {
         </div>
         <div className="register-button ">
           <button
-            className="bg-defaultGreen flex  p-4 justify-center items-center gap-4 rounded-[6.25rem] text-white  text-lg font-semibold leading-6  "
+            className="bg-defaultGreen flex focus-visible:outline-none p-4 justify-center items-center gap-4 rounded-[6.25rem] text-white  text-lg font-semibold leading-6  "
             onClick={() => dispatch(isModalOpen(true))}
           >
             {" "}
