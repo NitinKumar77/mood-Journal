@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import moodSlice from "./moodSlice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: { mood: moodSlice.reducer },
 });
 
 export default store;

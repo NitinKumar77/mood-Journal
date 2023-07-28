@@ -1,25 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/header/Header";
-// import Modal from "../components/modal/Modal";
+import Modal from "../components/modal/Modal";
+import { isModalOpen } from "../redux/moodSlice";
+import { useSelector } from "react-redux";
 
 function Root() {
-  // let [isOpen, setIsOpen] = useState(true);
+  const modalOpen = useSelector((state) => state.mood.modalOpen);
 
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
   return (
     <div>
       <Header />
       <Outlet />
-      {/* {isOpen && (
-        <Modal closeModal={closeModal} openModal={openModal} isOpen={isOpen} />
-      )} */}
+      {modalOpen && <Modal isModalOpen={isModalOpen} modalOpen={modalOpen} />}
     </div>
   );
 }
