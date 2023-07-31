@@ -3,36 +3,37 @@ import LineChart from "echarts-for-react";
 import { useSelector } from "react-redux";
 
 function LineChartComponent() {
-  const data = useSelector((state) => state.mood.data);
-  console.log(data);
-  return (
-    <LineChart
-      option={{
-        xAxis: {
-          type: "category",
-          data: [
-            "2023-07-27",
-            "2023-07-28",
-            "2023-07-29",
-            "2023-07-30",
-            "2023-07-31",
-            "2023-08-01",
-            "2023-09-02",
-          ],
-        },
-        yAxis: {
-          type: "category",
-          data: ["0", "Happy", "Normal", "Sad"],
-        },
-        series: [
-          {
-            data: ["Happy"],
-            type: "line",
-          },
-        ],
-      }}
-    />
-  );
+  const moodsData = useSelector((state) => state.mood.data);
+
+  // Convert moodsData to the desired format: [{x: "2023-07-27", y: "Normal"}, {x: "2023-07-28", y: "Sad"}, ...]
+  const convertedData = moodsData.map((item) => ({
+    x: item.date.substring(0, 10),
+    y: item.mood,
+  }));
+
+  console.log(moodsData, convertedData);
+
+  const option = {
+    xAxis: {
+      type: "category",
+      data: convertedData.map((item) => item.x), // Extracting dates
+    },
+    yAxis: {
+      type: "category",
+      data: ["Sad", "Normal", "Happy"],
+    },
+    series: [
+      {
+        data: convertedData.map((item) => ({
+          name: item.y,
+          value: [item.x, item.y],
+        })),
+        type: "line",
+      },
+    ],
+  };
+
+  return <LineChart option={option} style={{ height: "400px" }} />;
 }
 
 export default LineChartComponent;
