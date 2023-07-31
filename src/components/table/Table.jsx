@@ -1,8 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function Table() {
+function Table({ searchParams }) {
   const moodsData = useSelector((state) => state.mood.data);
+  const filterValue = searchParams.get("filter");
+  console.log(filterValue);
+  const filterData = filterValue
+    ? moodsData.filter((data) => data.mood === filterValue)
+    : moodsData;
   return (
     <>
       <div className=" bg-customTableBLue mt-16 flex justify-around">
@@ -22,7 +27,7 @@ function Table() {
           </span>
         </div>
       </div>
-      {moodsData?.map((data) => (
+      {filterData?.map((data) => (
         <div
           key={data.date}
           className={
