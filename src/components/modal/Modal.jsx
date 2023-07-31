@@ -9,6 +9,7 @@ import { moodListThunk } from "../../redux/moodSlice";
 export default function Modal({ isModalOpen, modalOpen }) {
   const dispatch = useDispatch();
   const [moodData, setMoodData] = useState({});
+  const [highlightedCard, setHighlightedCard] = useState("");
   console.log(moodData);
   const [typingTimeout, setTypingTimeout] = useState(null);
   const sendDataHandler = () => {
@@ -99,6 +100,8 @@ export default function Modal({ isModalOpen, modalOpen }) {
                       {cardData.map((data) => (
                         <MiniCard
                           onclickHandler={setMoodHandler}
+                          isHighlighted={highlightedCard === data.text} // Pass true/false based on whether this card is highlighted
+                          setHighlightedCard={setHighlightedCard} // Pass the function to update the highlightedCard state
                           icon={data.icon}
                           text={data.text}
                           key={data.text}

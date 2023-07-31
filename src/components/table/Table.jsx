@@ -33,17 +33,17 @@ function Table() {
               : "bg-customTableOrange flex mt-2 justify-around"
           }
         >
-          <div className="min-w-[25.85419rem] min-h-[1.5rem] flex  justify-center ">
+          <div className="min-w-[33.33%] min-h-[1.5rem] flex  justify-center grow-0 shrink-1 ">
             <span className=" p-3 text-black  text-base font-normal leading-6">
               {data.description}
             </span>
           </div>
-          <div className="min-w-[25.85419rem] min-h-[1.5rem] flex justify-center ">
+          <div className="min-w-[33.33%] min-h-[1.5rem] flex justify-center  grow-0 shrink-1">
             <span className=" p-3 text-black  text-base font-normal leading-6">
               {data.mood}
             </span>
           </div>
-          <div className="min-w-[25.85419rem] min-h-[1.5rem] flex justify-center ">
+          <div className="min-w-[33.33%]  min-h-[1.5rem] flex justify-center grow-0 shrink-1 ">
             <span className=" p-3 text-black  text-base font-normal leading-6">
               {data.date.split("T")[0]}
             </span>
