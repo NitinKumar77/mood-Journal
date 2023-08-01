@@ -16,6 +16,9 @@ module.exports = {
         defaultGreen: "rgba(70, 163, 154, 1)",
         spinnerLight: "rgba(85, 189, 179, 1)",
         spinnerdark: "rgba(85, 189, 179, 0.5)",
+        customDarkBrown: "rgba(113, 63, 18, 0.30)",
+        customDarkBrownRed: "rgba(127, 29, 29, 0.30)",
+        customDarkGreen: "rgba(20, 83, 45, 0.30)",
       },
       padding: {
         customCardPadding: "1.17rem 1.67rem 4.67rem 1.39rem",

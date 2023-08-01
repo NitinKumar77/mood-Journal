@@ -9,8 +9,8 @@ export default function MenuSelections() {
       <Menu as="div" className="inline-block text-left">
         <div>
           <Menu.Button
-            className="text-black font-Outfit text-base 
-         font-semibold leading-6 inline-flex w-full rounded-md bg-white px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            className="text-black dark:text-white font-Outfit text-base 
+         font-semibold leading-6 inline-flex w-full rounded-md  dark:bg-[#27272A]  bg-white px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           >
             {selectedOption} {/* Show the selected option in the button */}
           </Menu.Button>
@@ -23,7 +23,9 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Week")}
                   className={`${
-                    active ? "bg-defaultGreen text-white" : "text-gray-900"
+                    active
+                      ? "bg-defaultGreen dark:bg-[#27272A] text-white"
+                      : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Week
@@ -35,7 +37,9 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Month")}
                   className={`${
-                    active ? "bg-defaultGreen text-white" : "text-gray-900"
+                    active
+                      ? "bg-defaultGreen dark:bg-[#27272A] text-white"
+                      : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Month
@@ -49,7 +53,9 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("Last Year")}
                   className={`${
-                    active ? "bg-defaultGreen text-white" : "text-gray-900"
+                    active
+                      ? "bg-defaultGreen dark:bg-[#27272A] text-white"
+                      : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Last Year
@@ -61,7 +67,9 @@ export default function MenuSelections() {
                 <button
                   onClick={() => setSelectedOption("All Time")}
                   className={`${
-                    active ? "bg-defaultGreen text-white" : "text-gray-900"
+                    active
+                      ? "bg-defaultGreen dark:bg-[#27272A] text-white"
+                      : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   All Time

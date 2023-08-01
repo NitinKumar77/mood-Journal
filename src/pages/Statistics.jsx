@@ -20,10 +20,10 @@ function Statistics() {
           />
         ))}
       </div>
-      <div className="text-black text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
+      <div className="text-black mt-8 dark:text-white text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
         Track your mood! Add a mood now.
       </div>
-      <LineChartComponent />
+      <LineChartComponent searchParams={searchParams} />
     </div>
   );
 }
