@@ -14,13 +14,14 @@ function MiniCard({
         setHighlightedCard(text);
       }}
       className={
-        (isHighlighted === true) & (text === "Happy")
-          ? ` bg-blue-200 flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]`
+        ((isHighlighted === true) & (text === "Happy")
+          ? "bg-customTableBLue dark:bg-customDarkGreen"
           : (isHighlighted === true) & (text === "Sad")
-          ? ` bg-purple-100 flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]`
+          ? "bg-customSad dark:bg-customDarkBrownRed"
           : (isHighlighted === true) & (text === "Normal")
-          ? ` bg-customTableOrange flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]`
-          : ` bg-[#F2F2F2] flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]`
+          ? "bg-customTableOrange dark:bg-customDarkBrown"
+          : "bg-customGrey dark:bg-[#3F3F46]") +
+        " flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]"
       }
     >
       <img className="self-center" src={icon} alt={`${icon}icon`} />

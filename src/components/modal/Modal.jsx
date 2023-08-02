@@ -1,12 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cardData } from "../vectorOptionsData";
 import MiniCard from "../card/MinICard";
 import closeIcon from "../../icons/Close Square.svg";
-import { moodListThunk } from "../../redux/moodSlice";
+import { postMoodListThunk } from "../../redux/moodSlice";
+import { useModalContext } from "../../context/ModalContext";
 
-export default function Modal({ isModalOpen, modalOpen }) {
+export default function Modal() {
+  const { isModalOpen, closeModal } = useModalContext();
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+
+  const isSending = useSelector((state) => state.mood.isSending);
   const dispatch = useDispatch();
   const [moodData, setMoodData] = useState({});
   const [highlightedCard, setHighlightedCard] = useState("");
@@ -18,9 +23,15 @@ export default function Modal({ isModalOpen, modalOpen }) {
       moodData.hasOwnProperty("description")
     ) {
       setMoodData({});
-      dispatch(moodListThunk(moodData));
+      dispatch(postMoodListThunk(moodData));
+      setShowSuccessAlert(true);
+      setTimeout(() => {
+        setShowSuccessAlert(false);
+        closeModal();
+      }, 2000); // Hide the alert after 2 seconds and then close the modal
     }
   };
+
   const handleTextAreaChange = (event) => {
     // Clear any existing typing timeout
     if (typingTimeout) {
@@ -45,11 +56,11 @@ export default function Modal({ isModalOpen, modalOpen }) {
 
   return (
     <>
-      <Transition appear show={modalOpen} as={Fragment}>
+      <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-10 "
-          onClose={() => dispatch(isModalOpen(false))}
+          onClose={() => closeModal()}
         >
           <Transition.Child
             as={Fragment}
@@ -74,7 +85,7 @@ export default function Modal({ isModalOpen, modalOpen }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="flex max-w-[49.5rem]  p-6 flex-col items-start gap-4 flex-shrink-0 w-full  transform overflow-hidden rounded-2xl bg-[#F0F8F8] text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="flex max-w-[49.5rem]  p-6 flex-col items-start gap-4 flex-shrink-0 w-full  transform overflow-hidden rounded-2xl bg-[#F0F8F8] dark:bg-[#27272A] dark:text-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className={"flex flex-col w-full gap-3"}
@@ -84,7 +95,7 @@ export default function Modal({ isModalOpen, modalOpen }) {
                       <div className=" text-center self-center text-2xl p-2 w-full font-extrabold ">
                         Register Mood
                       </div>
-                      <button onClick={() => dispatch(isModalOpen(false))}>
+                      <button onClick={() => closeModal()}>
                         <img src={closeIcon} alt="closeIcon" />
                       </button>
                     </div>
@@ -95,6 +106,11 @@ export default function Modal({ isModalOpen, modalOpen }) {
                       How are you feeling?
                     </div>
                   </Dialog.Title>
+                  {showSuccessAlert && (
+                    <div className="text-green-500 text-center font-semibold">
+                      Success!
+                    </div>
+                  )}
                   <div className="mt-2">
                     <div className=" flex justify-evenly  gap-[1.25rem] mt-[0.63rem] ">
                       {cardData.map((data) => (
@@ -109,16 +125,19 @@ export default function Modal({ isModalOpen, modalOpen }) {
                       ))}
                     </div>
                   </div>
-                  <textarea
-                    placeholder="Write here relevant thoughts, reflections or feelings"
-                    className="resize-none rounded-md px-[0.8125rem] py-[0.75rem] w-full min-h-[8.3rem] placeholder:text-gray-400 text-gray-400   placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.025rem] tracking-[0.025rem] placeholder:p-10 focus-visible:outline-none"
-                    onChange={handleTextAreaChange}
-                  ></textarea>
+                  {!isSending && (
+                    <textarea
+                      placeholder="Write here relevant thoughts, reflections or feelings"
+                      className="resize-none rounded-md px-[0.8125rem] py-[0.75rem] w-full min-h-[8.3rem] placeholder:text-gray-400 text-gray-400 dark:bg-[#3F3F46]  placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.025rem] tracking-[0.025rem] placeholder:p-10 focus-visible:outline-none"
+                      onChange={handleTextAreaChange}
+                    ></textarea>
+                  )}
                   <div className="mt-4 w-full">
                     <button
                       type="button"
                       className="flex justify-center w-full text-white text-[0.875rem]/[1.25rem]  rounded-md  focus-visible:outline-none  bg-defaultGreen px-4 py-3  hover:bg-spinnerLight tracking-[.025rem]"
                       onClick={sendDataHandler}
+                      disabled={isSending}
                     >
                       Send
                     </button>

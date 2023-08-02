@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { isModalOpen } from "../../redux/moodSlice";
+import { useModalContext } from "../../context/ModalContext";
 
 function Header() {
-  const dispatch = useDispatch();
+  const { openModal } = useModalContext();
+
   return (
     <div>
       <div className="Navbar flex  justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
@@ -15,30 +15,36 @@ function Header() {
           <NavLink
             to={"/"}
             className={({ isActive }) =>
-              isActive ? "text-defaultGreen " : "text-black dark:text-white"
+              isActive
+                ? "text-defaultGreen dark:text-defaultGreen "
+                : "text-black dark:text-white"
             }
           >
-            <span className="menu-1 dark:text-white text-center  text-base font-medium leading-6">
+            <span className="menu-1  text-center  text-base font-medium leading-6">
               Home
             </span>
           </NavLink>
           <NavLink
             to={"/history"}
             className={({ isActive }) =>
-              isActive ? "text-defaultGreen  " : "text-black dark:text-white"
+              isActive
+                ? "text-defaultGreen dark:text-defaultGreen  "
+                : "text-black dark:text-white"
             }
           >
-            <span className="menu-2 text-center dark:text-white text-base font-medium leading-6">
+            <span className="menu-2 text-center  text-base font-medium leading-6">
               History
             </span>
           </NavLink>
           <NavLink
             to={"/Statistics"}
             className={({ isActive }) =>
-              isActive ? "text-defaultGreen  " : "text-black dark:text-white"
+              isActive
+                ? "text-defaultGreen  dark:text-defaultGreen "
+                : "text-black dark:text-white"
             }
           >
-            <span className="menu-3 text-center dark:text-white text-base font-medium leading-6">
+            <span className="menu-3 text-center  text-base font-medium leading-6">
               Statistics
             </span>
           </NavLink>
@@ -46,7 +52,7 @@ function Header() {
         <div className="register-button ">
           <button
             className="bg-defaultGreen flex focus-visible:outline-none p-4 justify-center items-center gap-4 rounded-[6.25rem] text-white  text-lg font-semibold leading-6  "
-            onClick={() => dispatch(isModalOpen(true))}
+            onClick={() => openModal()}
           >
             {" "}
             Register Mood

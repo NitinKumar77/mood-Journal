@@ -29,7 +29,7 @@ function Table({ searchParams }) {
       </div>
       {filterData?.map((data) => (
         <div
-          key={data.date}
+          key={`${data.date} ${data.mood} `}
           className={
             data.mood === "Happy"
               ? "bg-customTableBLue text-black dark:text-white dark:bg-customDarkGreen flex mt-2 justify-around"

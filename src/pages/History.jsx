@@ -3,10 +3,10 @@ import { cardData } from "../components/vectorOptionsData";
 import Card from "../components/card/Card";
 import MenuSelections from "../components/menu/MenuSelections";
 import { useDispatch, useSelector } from "react-redux";
-import { moodListThunk } from "../redux/moodSlice";
 import Table from "../components/table/Table";
 import Spinner from "../components/spinner/Spinner";
 import { useSearchParams } from "react-router-dom";
+import { getMoodListThunk } from "../redux/moodSlice";
 
 function History() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -15,7 +15,7 @@ function History() {
   const isLoading = useSelector((state) => state.mood.isLoading);
 
   useEffect(() => {
-    dispatch(moodListThunk());
+    dispatch(getMoodListThunk());
   }, [dispatch]);
   return (
     <>

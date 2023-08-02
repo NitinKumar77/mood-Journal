@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+const api = process.env.REACT_APP_API;
 const initialState = {
   data: [],
   isLoading: false,
-  modalOpen: false,
+  isSending: false,
 };
 const moodSlice = createSlice({
   name: "moodSlice",
@@ -14,8 +15,8 @@ const moodSlice = createSlice({
     setIsLoading(state, action) {
       state.isLoading = action.payload;
     },
-    isModalOpen(state, action) {
-      state.modalOpen = action.payload;
+    setIsSending(state, action) {
+      state.isSending = action.payload;
     },
     addMoodToList(state, action) {
       state.data.push(action.payload);
@@ -23,46 +24,88 @@ const moodSlice = createSlice({
   },
 });
 
-export const moodListThunk = (moodData) => {
+export const getMoodListThunk = () => {
   return async (dispatch) => {
-    const fetchData = async (method = "GET", bodyData) => {
+    const fetchData = async () => {
       dispatch(setIsLoading(true));
       const options = {
-        method,
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: bodyData ? JSON.stringify(bodyData) : null,
       };
 
-      const response = await fetch("http://localhost:8080/api/mood", options);
-      if (!response.ok) {
-        dispatch(setIsLoading(false));
-        throw new Error(
-          `HTTP error! Status: ${response.status} - ${response.statusText}`
-        );
-      }
+      try {
+        const response = await fetch("http://localhost:8080/api/mood", options);
+        if (!response.ok) {
+          dispatch(setIsLoading(false));
+          throw new Error(
+            `HTTP error! Status: ${response.status} - ${response.statusText}`
+          );
+        }
 
-      const data = await response.json();
-      dispatch(setIsLoading(false));
-      return data;
+        const data = await response.json();
+        dispatch(setIsLoading(false));
+        dispatch(setData(data.moods));
+      } catch (error) {
+        console.log(error.message);
+        dispatch(setIsLoading(false));
+      }
     };
 
-    try {
-      if (moodData) {
-        const newdata = await fetchData("POST", moodData);
+    fetchData();
+  };
+};
+
+export const postMoodListThunk = (moodData) => {
+  return async (dispatch) => {
+    const fetchData = async (bodyData) => {
+      dispatch(setIsSending(true));
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bodyData),
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/api/mood", options);
+        if (!response.ok) {
+          dispatch(setIsSending(false));
+          throw new Error(
+            `HTTP error! Status: ${response.status} - ${response.statusText}`
+          );
+        }
+
+        const data = await response.json();
+        dispatch(setIsSending(false));
+        return data;
+      } catch (error) {
+        console.log(error.message);
+        dispatch(setIsSending(false));
+      }
+    };
+
+    if (moodData) {
+      try {
+        const newdata = await fetchData(moodData);
         console.log(newdata);
         dispatch(addMoodToList(newdata));
-      } else {
-        const data = await fetchData("GET");
-        dispatch(setData(data.moods));
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
+    } else {
+      console.log("Error: moodData is required for POST request.");
     }
   };
 };
 
-export const { setData, setIsLoading, addMoodToList, isModalOpen } =
-  moodSlice.actions;
+export const {
+  setData,
+  setIsLoading,
+  addMoodToList,
+  setIsSending,
+  isModalOpen,
+} = moodSlice.actions;
 export default moodSlice;

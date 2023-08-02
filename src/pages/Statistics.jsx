@@ -2,7 +2,7 @@ import React from "react";
 import { cardData } from "../components/vectorOptionsData";
 import Card from "../components/card/Card";
 import { useSearchParams } from "react-router-dom";
-import LineChartComponent from "../components/chart/LineChartComponent";
+import StatsCharts from "../components/chart/StatsChart";
 
 function Statistics() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +23,7 @@ function Statistics() {
       <div className="text-black mt-8 dark:text-white text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
         Track your mood! Add a mood now.
       </div>
-      <LineChartComponent searchParams={searchParams} />
+      <StatsCharts />
     </div>
   );
 }

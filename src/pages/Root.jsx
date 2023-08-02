@@ -2,17 +2,16 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/header/Header";
 import Modal from "../components/modal/Modal";
-import { isModalOpen } from "../redux/moodSlice";
-import { useSelector } from "react-redux";
+
+import { useModalContext } from "../context/ModalContext";
 
 function Root() {
-  const modalOpen = useSelector((state) => state.mood.modalOpen);
-
+  const { isModalOpen } = useModalContext();
   return (
     <div>
       <Header />
       <Outlet />
-      {modalOpen && <Modal isModalOpen={isModalOpen} modalOpen={modalOpen} />}
+      {isModalOpen && <Modal />}
     </div>
   );
 }
