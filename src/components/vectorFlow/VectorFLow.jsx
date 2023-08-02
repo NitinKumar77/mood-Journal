@@ -5,9 +5,10 @@ import VectorOptions from "./VectorOptions";
 function VectorFLow() {
   const data = vectorOptionsData;
   return (
-    <div className="mt-[6.64rem] mr-[10rem]">
-      <div className="w-669 h-544">
+    <div className="mt-[6.64rem] mr-[10rem] ">
+      <div className="w-669 h-544 ">
         <svg
+          className="max-md:px-[3rem]"
           xmlns="http://www.w3.org/2000/svg"
           width="669"
           height="544"

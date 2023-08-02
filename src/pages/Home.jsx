@@ -4,7 +4,7 @@ import VectorFLow from "../components/vectorFlow/VectorFLow";
 
 function Home() {
   return (
-    <div className="flex  justify-center  mb-[10.19rem]">
+    <div className="flex max-md:mx-8 max-md:my-[3.75rem] max-md:flex-col justify-center  mb-[10.19rem]">
       <Description />
       <VectorFLow />
     </div>

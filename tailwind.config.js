@@ -2,6 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      sm: "414px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "860px",
+      // => @media (min-width: 768px) { ... }
+    },
     extend: {
       colors: {
         customNotebook: "#C1FFFF",

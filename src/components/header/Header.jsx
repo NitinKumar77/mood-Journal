@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <div>
-      <div className="Navbar flex  justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
+      <div className="Navbar flex max-md:m-0 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
         <div className="logo self-center dark:text-white border-defaultGreen border-l-4 text-black font-Outfit text-4xl font-semibold leading-8">
           Mood Journal
         </div>
