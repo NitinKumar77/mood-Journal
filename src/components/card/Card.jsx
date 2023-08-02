@@ -1,11 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom/dist";
+import { getMoodListThunk } from "../../redux/moodSlice";
+import { useEffect } from "react";
+import Spinner from "../spinner/Spinner";
 
 function Card({ icon, text, setSearchParams, filterValue }) {
   const location = useLocation();
   const currentPage = location.pathname;
   const moodsData = useSelector((state) => state.mood.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (moodsData.length === 0) {
+      dispatch(getMoodListThunk());
+    }
+  }, [moodsData]);
 
   return (
     <div
@@ -32,7 +42,8 @@ function Card({ icon, text, setSearchParams, filterValue }) {
         </div>
         <img className="self-center" src={icon} alt={`${icon}icon`} />
       </div>
-      {currentPage === "/Statistics" && (
+
+      {moodsData.length !== 0 && currentPage === "/Statistics" && (
         <div className="flex  flex-col justify-center flex-shrink-0 relative bottom-[70px] text-black dark:text-white text-center  text-lg font-semibold leading-8">
           {" "}
           {calculateMoodPercentage(moodsData, text)}%

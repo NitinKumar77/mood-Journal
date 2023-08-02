@@ -7,6 +7,7 @@ import StatsCharts from "../components/chart/StatsChart";
 function Statistics() {
   let [searchParams, setSearchParams] = useSearchParams();
   const filterValue = searchParams.get("filter");
+
   return (
     <div className="ml-[6.31rem] mr-[6.25rem]">
       <div className="summary flex justify-evenly gap-[2.09rem] mt-8">
@@ -23,7 +24,7 @@ function Statistics() {
       <div className="text-black mt-8 dark:text-white text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
         Track your mood! Add a mood now.
       </div>
-      <StatsCharts />
+      <StatsCharts searchParams={searchParams} />
     </div>
   );
 }
