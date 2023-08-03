@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-const api = process.env.REACT_APP_API;
 const initialState = {
   data: [],
   isLoading: false,

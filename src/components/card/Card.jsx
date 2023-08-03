@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom/dist";
 import { getMoodListThunk } from "../../redux/moodSlice";
 import { useEffect } from "react";
-import Spinner from "../spinner/Spinner";
 
 function Card({ icon, text, setSearchParams, filterValue }) {
   const location = useLocation();
@@ -15,7 +14,7 @@ function Card({ icon, text, setSearchParams, filterValue }) {
     if (moodsData.length === 0) {
       dispatch(getMoodListThunk());
     }
-  }, [moodsData]);
+  }, [moodsData, dispatch]);
 
   return (
     <div

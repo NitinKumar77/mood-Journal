@@ -7,11 +7,11 @@ function Header() {
 
   return (
     <div>
-      <div className="Navbar flex max-md:m-0 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
-        <div className="logo self-center dark:text-white border-defaultGreen border-l-4 text-black font-Outfit text-4xl font-semibold leading-8">
+      <div className="Navbar flex max-md:m-0 max-sm:p-4 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
+        <div className="logo self-center max-sm:text-2xl dark:text-white border-defaultGreen border-l-4 text-black font-Outfit text-4xl font-semibold leading-8">
           Mood Journal
         </div>
-        <div className="menu flex w-66 h-12 justify-center items-center gap-5 flex-shrink-0">
+        <div className="menu flex max-sm:hidden w-66 h-12 justify-center items-center gap-5 flex-shrink-0">
           <NavLink
             to={"/"}
             className={({ isActive }) =>
@@ -58,6 +58,44 @@ function Header() {
             Register Mood
           </button>
         </div>
+      </div>
+      <div className="menu flex sm:hidden mx-[1rem]  w-66 h-12 justify-center items-center gap-5 flex-shrink-0">
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-defaultGreen dark:text-defaultGreen "
+              : "text-black dark:text-white"
+          }
+        >
+          <span className="menu-1  text-center  text-base font-medium leading-6">
+            Home
+          </span>
+        </NavLink>
+        <NavLink
+          to={"/history"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-defaultGreen dark:text-defaultGreen  "
+              : "text-black dark:text-white"
+          }
+        >
+          <span className="menu-2 text-center  text-base font-medium leading-6">
+            History
+          </span>
+        </NavLink>
+        <NavLink
+          to={"/Statistics"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-defaultGreen  dark:text-defaultGreen "
+              : "text-black dark:text-white"
+          }
+        >
+          <span className="menu-3 text-center  text-base font-medium leading-6">
+            Statistics
+          </span>
+        </NavLink>
       </div>
     </div>
   );
