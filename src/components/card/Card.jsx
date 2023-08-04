@@ -27,12 +27,12 @@ function Card({ icon, text, setSearchParams, filterValue }) {
           : (filterValue === true) & (text === "Sad")
           ? "bg-customSad dark:bg-customDarkBrownRed"
           : "bg-customGrey dark:bg-[#3F3F46]") +
-        " flex flex-col rounded-[0.375rem]"
+        " flex flex-col flex-1 rounded-[0.375rem] w-full"
       }
     >
       <div
         className={
-          " p-customCardPadding flex shrink grow justify-start max-sm:justify-between max-sm:p-0 max-md:pb-[2.62rem] items-center gap-[0.4rem]   "
+          "w-full p-customCardPadding flex shrink grow justify-start max-sm:justify-between max-sm:p-0 max-md:pb-[2.62rem] items-center gap-[0.4rem]   "
         }
       >
         <div className="  flex justify-start items-center max-md:min-w-[9.422rem] max-sm:min-w-[5rem] max-sm:min-h-[3.25rem] min-w-[18.422rem] min-h-[4.5rem]  max-sm:pl-[0.94rem]">
