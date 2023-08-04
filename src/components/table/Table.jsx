@@ -11,17 +11,17 @@ function Table({ searchParams }) {
   return (
     <>
       <div className=" bg-customTableBLue text-black dark:text-white dark:bg-[#313134] mt-16 flex justify-around">
-        <div className="min-w-[25.85419rem] min-h-[1.5rem] flex justify-center">
+        <div className=" flex justify-center">
           <span className=" p-3  text-center  text-base font-semibold leading-6 tracking-tight">
             Content
           </span>
         </div>
-        <div className="min-w-[25.85419rem] min-h-[1.5rem] flex justify-center">
+        <div className=" flex justify-center">
           <span className=" p-3  text-center  text-base font-semibold leading-6 tracking-tight">
             Mood
           </span>
         </div>
-        <div className="min-w-[25.85419rem] min-h-[1.5rem] flex justify-center">
+        <div className=" flex justify-center">
           <span className=" p-3  text-center  text-base font-semibold leading-6 tracking-tight">
             Data
           </span>

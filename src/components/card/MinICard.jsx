@@ -21,7 +21,7 @@ function MiniCard({
           : (isHighlighted === true) & (text === "Normal")
           ? "bg-customTableOrange dark:bg-customDarkBrown"
           : "bg-customGrey dark:bg-[#3F3F46]") +
-        " flex justify-center  rounded-[0.375rem] min-w-[14.6rem] min-h-[4.6rem]"
+        " flex justify-center  rounded-[0.375rem] w-[33.33%] min-h-[4.6rem]"
       }
     >
       <img className="self-center" src={icon} alt={`${icon}icon`} />

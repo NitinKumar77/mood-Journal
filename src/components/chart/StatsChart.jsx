@@ -38,8 +38,8 @@ export default function StatsCharts({ searchParams }) {
         label: "Happy",
         data: happyData,
         fill: false,
-        borderColor: "white",
-        pointBackgroundColor: "white",
+        borderColor: "lightGreen",
+        pointBackgroundColor: "DarkGreen",
       },
       {
         label: "Normal",

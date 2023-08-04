@@ -12,10 +12,10 @@ module.exports = {
     extend: {
       colors: {
         customNotebook: "#C1FFFF",
+        customGreen: "#B7FFE4",
         customBlue: "#BBD5FF",
         customOrange: "#FCBFA3",
         customPurple: "#BEBEFF",
-        customGreen: "#B7FFE4",
         customGrey: "#F2F2F2",
         customTableBLue: "rgb(240,248,248)",
         customTableOrange: "rgba(254, 248, 230, 1)",

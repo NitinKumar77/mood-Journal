@@ -22,9 +22,9 @@ function History() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="ml-[6.31rem] mr-[6.25rem]">
+        <div className="ml-[6.31rem] mr-[6.25rem] max-md:m-0 max-sm:mx-[1.19rem] max-md:mx-[2.06rem] max-sm:mt-[1.19rem]">
           <MenuSelections />
-          <div className="summary flex justify-evenly gap-[2.09rem] mt-8">
+          <div className="summary flex max-sm:flex-col justify-between gap-[2.09rem] mt-8 max-md:gap-[0.625rem]">
             {cardData.map((data) => (
               <Card
                 icon={data.icon}

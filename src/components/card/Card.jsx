@@ -26,24 +26,31 @@ function Card({ icon, text, setSearchParams, filterValue }) {
           ? "bg-customTableOrange dark:bg-customDarkBrown"
           : (filterValue === true) & (text === "Sad")
           ? "bg-customSad dark:bg-customDarkBrownRed"
-          : "bg-customGrey dark:bg-[#3F3F46]") + " flex flex-col"
+          : "bg-customGrey dark:bg-[#3F3F46]") +
+        " flex flex-col rounded-[0.375rem]"
       }
     >
       <div
         className={
-          " p-customCardPadding flex shrink grow justify-start items-center gap-[0.4rem] rounded-[0.375rem] min-w-[24.422rem] min-h-[10.5rem]"
+          " p-customCardPadding flex shrink grow justify-start max-sm:justify-between max-sm:p-0 max-md:pb-[2.62rem] items-center gap-[0.4rem]   "
         }
       >
-        <div className="  flex justify-start items-center min-w-[18.422rem] min-h-[4.5rem] ">
+        <div className="  flex justify-start items-center max-md:min-w-[9.422rem] max-sm:min-w-[5rem] max-sm:min-h-[3.25rem] min-w-[18.422rem] min-h-[4.5rem]  max-sm:pl-[0.94rem]">
           <span className="text-black dark:text-white text-lg font-normal leading-loose">
             {text}
           </span>
         </div>
-        <img className="self-center" src={icon} alt={`${icon}icon`} />
+        {moodsData.length !== 0 && currentPage === "/Statistics" && (
+          <div className="flex sm:hidden  justify-center flex-shrink-0  text-black dark:text-white text-center  text-lg font-semibold leading-8">
+            {" "}
+            {calculateMoodPercentage(moodsData, text)}%
+          </div>
+        )}
+        <img className="self-center mr-4" src={icon} alt={`${icon}icon`} />
       </div>
 
       {moodsData.length !== 0 && currentPage === "/Statistics" && (
-        <div className="flex  flex-col justify-center flex-shrink-0 relative bottom-[70px] text-black dark:text-white text-center  text-lg font-semibold leading-8">
+        <div className="flex max-sm:hidden flex-col justify-center flex-shrink-0 relative bottom-[70px] max-md:bottom-[50px] text-black dark:text-white text-center  text-lg font-semibold leading-8">
           {" "}
           {calculateMoodPercentage(moodsData, text)}%
         </div>

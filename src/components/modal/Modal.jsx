@@ -111,8 +111,8 @@ export default function Modal() {
                       Success!
                     </div>
                   )}
-                  <div className="mt-2">
-                    <div className=" flex justify-evenly  gap-[1.25rem] mt-[0.63rem] ">
+                  <div className="mt-2 w-full">
+                    <div className=" flex justify-evenly w-full gap-[1.25rem] mt-[0.63rem] max-md:gap-[1.1rem ] max-sm:gap-[0.55rem] ">
                       {cardData.map((data) => (
                         <MiniCard
                           onclickHandler={setMoodHandler}
