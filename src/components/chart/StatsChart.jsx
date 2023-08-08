@@ -29,7 +29,8 @@ export default function StatsCharts({ searchParams }) {
   const happyData = labels.map((date) => dateToMoodCount[date].Happy);
   const sadData = labels.map((date) => dateToMoodCount[date].Sad);
   const normalData = labels.map((date) => dateToMoodCount[date].Normal);
-  console.log(dateToMoodCount, "===========", happyData, labels);
+
+  const maxCount = Math.max(...happyData, ...sadData, ...normalData);
 
   const data = {
     labels,
@@ -58,14 +59,27 @@ export default function StatsCharts({ searchParams }) {
     ],
   };
 
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: maxCount,
+        ticks: {
+          stepSize: 1,
+          precision: 0,
+        },
+      },
+    },
+  };
+
   return (
-    <div className="mx-auto my-20">
+    <div className="mx-auto flex justify-center items-center my-20  max-h-96">
       {moodsData.length === 0 && (
         <div className="text-black mt-12 mb-8 dark:text-white text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
           Track your mood! Add a mood now.
         </div>
       )}
-      <Line data={data} />
+      <Line data={data} options={options} />
     </div>
   );
 }

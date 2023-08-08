@@ -3,9 +3,10 @@ import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cardData } from "../vectorOptionsData";
 import MiniCard from "../card/MinICard";
-import closeIcon from "../../icons/Close Square.svg";
+
 import { postMoodListThunk } from "../../redux/moodSlice";
 import { useModalContext } from "../../context/ModalContext";
+import Spinner from "../spinner/Spinner";
 
 export default function Modal() {
   const { isModalOpen, closeModal } = useModalContext();
@@ -15,7 +16,6 @@ export default function Modal() {
   const dispatch = useDispatch();
   const [moodData, setMoodData] = useState({});
   const [highlightedCard, setHighlightedCard] = useState("");
-  console.log(moodData);
   const [typingTimeout, setTypingTimeout] = useState(null);
   const sendDataHandler = () => {
     if (
@@ -25,20 +25,18 @@ export default function Modal() {
       setMoodData({});
       dispatch(postMoodListThunk(moodData));
       setShowSuccessAlert(true);
+      closeModal();
       setTimeout(() => {
         setShowSuccessAlert(false);
-        closeModal();
-      }, 2000); // Hide the alert after 2 seconds and then close the modal
+      }, 2000);
     }
   };
 
   const handleTextAreaChange = (event) => {
-    // Clear any existing typing timeout
     if (typingTimeout) {
       clearTimeout(typingTimeout);
     }
 
-    // Set a new typing timeout of 1000ms (adjust this as per your requirement)
     setTypingTimeout(
       setTimeout(() => {
         setMoodData((prevMoodData) => ({
@@ -96,7 +94,23 @@ export default function Modal() {
                         Register Mood
                       </div>
                       <button onClick={() => closeModal()}>
-                        <img src={closeIcon} alt="closeIcon" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          className="fill-current dark:text-white text-defaultGreen  "
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M2.004 11.228a1.248 1.248 0 0 1-.883-2.133l7.986-7.987a1.248 1.248 0 1 1 1.767 1.766l-7.987 7.987a1.24 1.24 0 0 1-.883.367Z"
+                            clip-rule="evenodd"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            d="M9.994 11.233c-.32 0-.64-.122-.883-.367L1.117 2.871a1.248 1.248 0 1 1 1.767-1.767L10.877 9.1a1.248 1.248 0 0 1-.883 2.134Z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
                       </button>
                     </div>
                     <div className=" text-center text-base font-normal ">
@@ -111,36 +125,41 @@ export default function Modal() {
                       Success!
                     </div>
                   )}
-                  <div className="mt-2 w-full">
-                    <div className=" flex justify-evenly w-full gap-[1.25rem] mt-[0.63rem] max-md:gap-[1.1rem ] max-sm:gap-[0.55rem] ">
-                      {cardData.map((data) => (
-                        <MiniCard
-                          onclickHandler={setMoodHandler}
-                          isHighlighted={highlightedCard === data.text} // Pass true/false based on whether this card is highlighted
-                          setHighlightedCard={setHighlightedCard} // Pass the function to update the highlightedCard state
-                          icon={data.icon}
-                          text={data.text}
-                          key={data.text}
-                        />
-                      ))}
+                  <div className="flex mt-2  flex-col gap-[0.65rem] w-full">
+                    <div className="w-full">
+                      <div className=" flex justify-evenly w-full gap-[1.25rem] mt-[0.63rem] max-md:gap-[1.1rem ] max-sm:gap-[0.55rem] ">
+                        {!isSending &&
+                          cardData.map((data) => (
+                            <MiniCard
+                              onclickHandler={setMoodHandler}
+                              isHighlighted={highlightedCard === data.text}
+                              setHighlightedCard={setHighlightedCard}
+                              icon={data.icon}
+                              text={data.text}
+                              key={data.text}
+                            />
+                          ))}
+                      </div>
                     </div>
-                  </div>
-                  {!isSending && (
-                    <textarea
-                      placeholder="Write here relevant thoughts, reflections or feelings"
-                      className="resize-none rounded-md px-[0.8125rem] py-[0.75rem] w-full min-h-[8.3rem] placeholder:text-gray-400 text-gray-400 dark:bg-[#3F3F46]  placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.025rem] tracking-[0.025rem] placeholder:p-10 focus-visible:outline-none"
-                      onChange={handleTextAreaChange}
-                    ></textarea>
-                  )}
-                  <div className="mt-4 w-full">
-                    <button
-                      type="button"
-                      className="flex justify-center w-full text-white text-[0.875rem]/[1.25rem]  rounded-md  focus-visible:outline-none  bg-defaultGreen px-4 py-3  hover:bg-spinnerLight tracking-[.025rem]"
-                      onClick={sendDataHandler}
-                      disabled={isSending}
-                    >
-                      Send
-                    </button>
+                    {!isSending && (
+                      <textarea
+                        placeholder="Write here relevant thoughts, reflections or feelings"
+                        className="resize-none rounded-md px-[0.8125rem] py-[0.75rem] w-full min-h-[8.3rem] placeholder:text-gray-400 text-gray-400 dark:bg-[#3F3F46]  placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.025rem] tracking-[0.025rem] placeholder:p-10 focus-visible:outline-none"
+                        onChange={handleTextAreaChange}
+                        disabled={isSending || showSuccessAlert}
+                      ></textarea>
+                    )}
+                    {isSending && <Spinner />}
+                    <div className=" w-full">
+                      <button
+                        type="button"
+                        className="flex justify-center w-full text-white disabled:bg-gray-400 disabled:text-slate-400 text-[0.875rem]/[1.25rem]  rounded-md  focus-visible:outline-none  bg-defaultGreen px-4 py-3  hover:bg-spinnerLight tracking-[.025rem]"
+                        onClick={sendDataHandler}
+                        disabled={isSending || showSuccessAlert}
+                      >
+                        Send
+                      </button>
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

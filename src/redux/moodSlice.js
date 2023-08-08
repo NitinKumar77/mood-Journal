@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+const api = process.env.REACT_APP_API;
 const initialState = {
   data: [],
   isLoading: false,
@@ -23,79 +24,90 @@ const moodSlice = createSlice({
   },
 });
 
+const fetchData = async (url, options) => {
+  try {
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(
+        `HTTP error! Status: ${response.status} - ${response.statusText}`
+      );
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+};
+
 export const getMoodListThunk = () => {
   return async (dispatch) => {
-    const fetchData = async () => {
-      dispatch(setIsLoading(true));
-      const options = {
+    dispatch(setIsLoading(true));
+
+    try {
+      const data = await fetchData(`${api}/mood`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      };
+      });
 
-      try {
-        const response = await fetch("http://localhost:8080/api/mood", options);
-        if (!response.ok) {
-          dispatch(setIsLoading(false));
-          throw new Error(
-            `HTTP error! Status: ${response.status} - ${response.statusText}`
-          );
-        }
-
-        const data = await response.json();
-        dispatch(setIsLoading(false));
-        dispatch(setData(data.moods));
-      } catch (error) {
-        console.log(error.message);
-        dispatch(setIsLoading(false));
-      }
-    };
-
-    fetchData();
+      dispatch(setData(data.moods));
+    } catch (error) {
+    } finally {
+      dispatch(setIsLoading(false));
+    }
   };
 };
 
 export const postMoodListThunk = (moodData) => {
   return async (dispatch) => {
-    const fetchData = async (bodyData) => {
-      dispatch(setIsSending(true));
-      const options = {
+    if (!moodData) {
+      console.log("Error: moodData is required for POST request.");
+      return;
+    }
+
+    dispatch(setIsSending(true));
+
+    try {
+      const newdata = await fetchData(`${api}/mood`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bodyData),
-      };
+        body: JSON.stringify(moodData),
+      });
 
-      try {
-        const response = await fetch("http://localhost:8080/api/mood", options);
-        if (!response.ok) {
-          dispatch(setIsSending(false));
-          throw new Error(
-            `HTTP error! Status: ${response.status} - ${response.statusText}`
-          );
-        }
+      dispatch(addMoodToList(newdata));
+    } catch (error) {
+    } finally {
+      dispatch(setIsSending(false));
+    }
+  };
+};
 
-        const data = await response.json();
-        dispatch(setIsSending(false));
-        return data;
-      } catch (error) {
-        console.log(error.message);
-        dispatch(setIsSending(false));
-      }
-    };
+export const dateListThunk = (option = "Month") => {
+  return async (dispatch) => {
+    if (!option) {
+      console.log("Error: option is required for fetching data.");
+      return;
+    }
 
-    if (moodData) {
-      try {
-        const newdata = await fetchData(moodData);
-        console.log(newdata);
-        dispatch(addMoodToList(newdata));
-      } catch (error) {
-        console.log(error.message);
-      }
-    } else {
-      console.log("Error: moodData is required for POST request.");
+    dispatch(setIsLoading(true));
+
+    try {
+      const data = await fetchData(`${api}/mood?date=${option}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      dispatch(setData(data.moods));
+    } catch (error) {
+    } finally {
+      dispatch(setIsLoading(false));
     }
   };
 };

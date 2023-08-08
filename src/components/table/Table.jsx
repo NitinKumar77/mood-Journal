@@ -4,13 +4,12 @@ import { useSelector } from "react-redux";
 function Table({ searchParams }) {
   const moodsData = useSelector((state) => state.mood.data);
   const filterValue = searchParams.get("filter");
-  console.log(filterValue);
   const filterData = filterValue
     ? moodsData.filter((data) => data.mood === filterValue)
     : moodsData;
   return (
-    <>
-      <div className=" bg-customTableBLue text-black dark:text-white dark:bg-[#313134] mt-16 flex justify-around">
+    <div div className="my-16">
+      <div className=" bg-customTableBLue text-black dark:text-white dark:bg-[#313134]   flex justify-around">
         <div className=" flex justify-center">
           <span className=" p-3  text-center  text-base font-semibold leading-6 tracking-tight">
             Content
@@ -38,7 +37,7 @@ function Table({ searchParams }) {
               : "bg-customTableOrange text-black dark:text-white dark:bg-customDarkBrown flex mt-2 justify-around"
           }
         >
-          <div className="min-w-[33.33%] min-h-[1.5rem] flex  justify-center grow-0 shrink-1 ">
+          <div className="min-w-[33.33%] min-h-[1.5rem] flex  justify-start grow-0 shrink-1 ">
             <span className=" p-3   text-base font-normal leading-6">
               {data.description}
             </span>
@@ -55,7 +54,7 @@ function Table({ searchParams }) {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
