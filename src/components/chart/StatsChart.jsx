@@ -9,14 +9,15 @@ export default function StatsCharts({ searchParams }) {
   const isLoading = useSelector((state) => state.mood.isLoading);
   const filterValue = searchParams.get("filter");
   const dispatch = useDispatch();
-
   const memoizedGetMoodListThunk = useMemo(() => {
     return () => dispatch(getMoodListThunk());
   }, [dispatch]);
-
+  const isDataFetched = useSelector((state) => !!state.mood.data.length);
   useEffect(() => {
-    memoizedGetMoodListThunk();
-  }, [memoizedGetMoodListThunk]);
+    if (!isDataFetched) {
+      memoizedGetMoodListThunk();
+    }
+  }, [isDataFetched, memoizedGetMoodListThunk]);
 
   const filterData = filterValue
     ? moodsData.filter((data) => data.mood === filterValue)

@@ -18,9 +18,13 @@ function History() {
     return () => dispatch(getMoodListThunk());
   }, [dispatch]);
 
+  const isDataFetched = useSelector((state) => !!state.mood.data.length);
+
   useEffect(() => {
-    memoizedGetMoodListThunk();
-  }, [memoizedGetMoodListThunk]);
+    if (!isDataFetched) {
+      memoizedGetMoodListThunk();
+    }
+  }, [isDataFetched, memoizedGetMoodListThunk]);
 
   if (isLoading) {
     return <Spinner />;
