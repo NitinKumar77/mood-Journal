@@ -20,6 +20,7 @@ function Statistics() {
             key={data.text}
             setSearchParams={setSearchParams}
             filterValue={filterValue === data.text}
+            params={searchParams}
           />
         ))}
       </div>

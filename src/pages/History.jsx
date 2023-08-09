@@ -28,7 +28,7 @@ function History() {
 
   return (
     <>
-      <div className="absolute top-40 ml-[6.31rem] mr-[6.25rem] max-md:m-0 max-sm:mx-[1rem] max-md:mx-[2.06rem] max-sm:mt-[1.19rem]">
+      <div className="relative top-40  ml-[6.31rem] mr-[6.25rem] max-md:m-0 max-sm:mx-[1rem] max-md:mx-[2.06rem] max-sm:mt-[1.19rem]">
         <MenuSelections />
         <div className="summary flex max-sm:flex-col justify-between gap-[2.09rem] mt-8 max-md:gap-[0.625rem]">
           {cardData.map(({ icon, text }) => (

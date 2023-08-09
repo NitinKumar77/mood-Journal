@@ -30,7 +30,6 @@ function Card({ icon, text, setSearchParams, params, filterValue }) {
     <div
       onClick={() => {
         const updatedParams = new URLSearchParams(params);
-        console.log(updatedParams);
         if (params?.get("filter") === text) {
           updatedParams.delete("filter");
         } else {
