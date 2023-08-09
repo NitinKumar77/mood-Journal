@@ -10,35 +10,35 @@ export const vectorOptionsData = [
     description: "Monitor Your Mood",
     bg: "bg-customNotebook",
     position:
-      "left-[8rem] bottom-[4rem] max-md:top-[15rem] max-sm:top-[7rem] max-sm:left-[3rem] ",
+      "left-[8rem] bottom-[4rem] max-md:top-[8rem] max-sm:top-[8rem] max-sm:left-[3rem] ",
   },
   {
     icon: Glass,
     description: "Identify Patterns",
     bg: "bg-customBlue",
     position:
-      "top-[5rem] left-[16rem] max-md:top-[28rem] max-md:left-[17rem] max-sm:top-[14rem] max-sm:left-[7rem]",
+      "top-[5rem] left-[16rem] max-md:top-[21rem] max-md:left-[17rem] max-sm:top-[15rem] max-sm:left-[7rem]",
   },
   {
     icon: Thinking,
     description: "Develop Self-Awareness",
     bg: "bg-customGreen",
     position:
-      "bottom-[-3rem] left-[36rem] max-md:top-[20rem]  max-md:left-[33rem] max-sm:top-[10rem] max-sm:left-[15rem]",
+      "bottom-[-3rem] left-[36rem] max-md:top-[13rem]  max-md:left-[33rem] max-sm:top-[11rem] max-sm:left-[15rem]",
   },
   {
     icon: Smile,
     description: "Improve your Mental Health",
     bg: "bg-customPurple",
     position:
-      "top-[23rem] right-[-36rem] max-md:top-[43rem]   max-sm:top-[21rem] max-sm:left-[11rem]",
+      "top-[23rem] right-[-36rem] max-md:top-[36rem]   max-sm:top-[22rem] max-sm:left-[11rem]",
   },
   {
     icon: Tracking,
     description: "Track your Progress",
     bg: "bg-customOrange",
     position:
-      "top-[16rem] left-[-5rem] max-md:top-[37rem] max-md:left-[-2rem]  max-sm:top-[18rem] max-sm:left-[-2rem]",
+      "top-[16rem] left-[-5rem] max-md:top-[29rem] max-md:left-[-2rem]  max-sm:top-[19rem] max-sm:left-[-2rem]",
   },
 ];
 
