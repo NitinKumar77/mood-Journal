@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getMoodListThunk } from "../../redux/moodSlice";
 
 export default function StatsCharts({ searchParams }) {
   const moodsData = useSelector((state) => state.mood.data);
+  const isLoading = useSelector((state) => state.mood.isLoading);
   const filterValue = searchParams.get("filter");
+  const dispatch = useDispatch();
+
+  const memoizedGetMoodListThunk = useMemo(() => {
+    return () => dispatch(getMoodListThunk());
+  }, [dispatch]);
+
+  useEffect(() => {
+    memoizedGetMoodListThunk();
+  }, [memoizedGetMoodListThunk]);
 
   const filterData = filterValue
     ? moodsData.filter((data) => data.mood === filterValue)
@@ -79,7 +90,7 @@ export default function StatsCharts({ searchParams }) {
           Track your mood! Add a mood now.
         </div>
       )}
-      <Line data={data} options={options} />
+      {!isLoading && <Line data={data} options={options} />}{" "}
     </div>
   );
 }

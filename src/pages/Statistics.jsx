@@ -10,7 +10,7 @@ function Statistics() {
   const filterValue = searchParams.get("filter");
 
   return (
-    <div className="ml-[6.31rem] mr-[6.25rem] max-md:m-0 max-sm:mx-[1.19rem] max-sm:mt-[1.19rem] max-md:mx-[2.06rem]">
+    <div className="relative top-40  ml-[6.31rem] mr-[6.25rem] max-md:m-0 max-sm:mx-[1.19rem] max-sm:mt-[1.19rem] max-md:mx-[2.06rem]">
       <MenuSelections />
       <div className="summary flex justify-between gap-[2.09rem] mt-8 max-sm:flex-col max-md:gap-[0.625rem]">
         {cardData.map((data) => (

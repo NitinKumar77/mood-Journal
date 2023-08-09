@@ -8,7 +8,7 @@ import { useModalContext } from "../context/ModalContext";
 function Root() {
   const { isModalOpen } = useModalContext();
   return (
-    <div>
+    <div className="w-full">
       <Header />
       <Outlet />
       {isModalOpen && <Modal />}

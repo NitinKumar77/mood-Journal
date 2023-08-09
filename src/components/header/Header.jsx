@@ -6,8 +6,8 @@ function Header() {
   const { openModal } = useModalContext();
 
   return (
-    <div>
-      <div className="Navbar flex max-md:m-0 max-sm:p-4 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
+    <div className="w-full fixed bg-white z-20 dark:bg-[#27272A] ">
+      <div className="Navbar   flex max-md:m-0 max-sm:p-4 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
         <div className="logo self-center max-sm:text-2xl dark:text-white border-defaultGreen border-l-4 text-black font-Outfit text-4xl font-semibold leading-8">
           Mood Journal
         </div>
