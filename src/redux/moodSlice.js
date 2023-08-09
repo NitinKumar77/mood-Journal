@@ -46,7 +46,7 @@ export const getMoodListThunk = () => {
     dispatch(setIsLoading(true));
 
     try {
-      const data = await fetchData(`${api}/mood`, {
+      const data = await fetchData("http://localhost:8080/api/mood", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export const postMoodListThunk = (moodData) => {
     dispatch(setIsSending(true));
 
     try {
-      const newdata = await fetchData(`${api}/mood`, {
+      const newdata = await fetchData("http://localhost:8080/api/mood", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,12 +97,15 @@ export const dateListThunk = (option = "Month") => {
     dispatch(setIsLoading(true));
 
     try {
-      const data = await fetchData(`${api}/mood?date=${option}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const data = await fetchData(
+        `http://localhost:8080/api/mood?date=${option}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       dispatch(setData(data.moods));
     } catch (error) {
