@@ -2,7 +2,7 @@ import History from "../pages/History";
 import Home from "../pages/Home";
 import Root from "../pages/Root";
 import Statistics from "../pages/Statistics";
-import { tokenLoader } from "../util/Auth";
+import { checkAuthLoader, tokenLoader } from "../util/Auth";
 
 export const routes = [
   {
@@ -18,10 +18,12 @@ export const routes = [
       {
         path: "/history",
         element: <History />,
+        loader: checkAuthLoader,
       },
       {
         path: "/statistics",
         element: <Statistics />,
+        loader: checkAuthLoader,
       },
     ],
   },

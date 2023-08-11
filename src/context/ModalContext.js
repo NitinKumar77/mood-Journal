@@ -5,7 +5,7 @@ export const useModalContext = () => useContext(ModalContext);
 
 export function ModalContextProvider({ children }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isSignupModalOpen, setSignupModalOpen] = useState(true);
+  const [isSignupModalOpen, setSignupModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);

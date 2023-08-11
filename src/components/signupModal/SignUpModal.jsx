@@ -9,13 +9,19 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { loginThunk } from "../../redux/loginslice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNotificationContext } from "../../context/NotificationContextProvider";
 
 export default function SignUpModal() {
+  const dispatch = useDispatch();
+  const { notificationHandler } = useNotificationContext();
+
+  const [loginDetails, setLoginDetails] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
   const { openSignupModal, closeSignupModal, isSignupModalOpen } =
     useModalContext();
   const navigate = useNavigate();
-  const location = useLocation();
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
   };
@@ -27,6 +33,20 @@ export default function SignUpModal() {
   const closeHandler = () => {
     closeSignupModal();
     navigate("/");
+  };
+  const sendDataHandler = (mode) => {
+    if (
+      loginDetails.hasOwnProperty("username") &&
+      loginDetails.hasOwnProperty("password")
+    ) {
+      setLoginDetails({});
+      dispatch(loginThunk(loginDetails, mode));
+
+      closeSignupModal();
+    }
+  };
+  const onChangeHandler = ({ target: { value, name } }) => {
+    setLoginDetails((state) => ({ ...state, [name]: value }));
   };
   return (
     <>
@@ -70,14 +90,18 @@ export default function SignUpModal() {
                       {isLogin ? "Welcome Back!" : "Create Your Account"}{" "}
                     </div>
                     <input
+                      name="username"
                       placeholder="Enter your username"
                       className=" py-[0.81rem] px-[0.75rem] resize-none rounded-lg  w-full placeholder:text-gray-400 text-gray-400 dark:bg-[#3F3F46]  placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.0125rem] tracking-[0.0125rem] placeholder:p-3 focus-visible:outline-none"
+                      onChange={onChangeHandler}
                     ></input>
                     <div className="relative">
                       <input
                         placeholder="Enter your password"
                         type={passwordVisible ? "text" : "password"}
                         className="py-[0.81rem] px-[0.75rem] resize-none rounded-lg w-full placeholder:text-gray-400 text-gray-400 dark:bg-[#3F3F46] placeholder:text-base text-base placeholder:leading-6 leading-6 placeholder:tracking-[0.0125rem] tracking-[0.0125rem] placeholder:p-3 focus-visible:outline-none pr-10"
+                        onChange={onChangeHandler}
+                        name="password"
                       />
                       <button
                         className="absolute top-0 right-0 h-full flex items-center px-4 text-gray-600"
@@ -94,6 +118,9 @@ export default function SignUpModal() {
                     <button
                       type="button"
                       className="flex justify-center w-full  text-white disabled:bg-gray-400 disabled:text-slate-400 text-[0.875rem]/[1.25rem]  rounded-md  focus-visible:outline-none  bg-defaultGreen px-4 py-3  hover:bg-spinnerLight tracking-[.025rem]"
+                      onClick={() =>
+                        sendDataHandler(isLogin ? "signin" : "signup")
+                      }
                     >
                       {isLogin ? "Sign In" : "Sign Up"}
                     </button>
@@ -103,7 +130,7 @@ export default function SignUpModal() {
                         className="text-defaultGreen"
                         to={`?mode=${isLogin ? "signup" : "signin"}`}
                       >
-                        {isLogin ? " Sign In" : " Sign Up"}
+                        {!isLogin ? " Sign In" : " Sign Up"}
                       </Link>
                     </div>
                   </div>

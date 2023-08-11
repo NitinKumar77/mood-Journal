@@ -1,19 +1,19 @@
 import React from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useModalContext } from "../../context/ModalContext";
 import { useSelector } from "react-redux";
 
 function Header() {
   const { openModal, openSignupModal } = useModalContext();
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
-  const [searchParams] = useSearchParams();
+  const token = localStorage.getItem("moodjournal-accesstoken");
   return (
     <div className="w-full fixed bg-white z-20 dark:bg-[#27272A] ">
       <div className="Navbar   flex max-md:m-0 max-sm:p-4 max-md:px-8 max-md:py-[3.63rem] justify-between mx-[6.31rem] mb-[2.63rem] mt-[3.88rem]">
         <div className="logo self-center max-sm:text-2xl dark:text-white border-defaultGreen border-l-4 text-black font-Outfit text-4xl font-semibold leading-8">
           Mood Journal
         </div>
-        {isLoggedIn && (
+        {(isLoggedIn || token) && (
           <>
             <div className="menu flex max-sm:hidden w-66 h-12 justify-center items-center gap-5 flex-shrink-0">
               <NavLink
@@ -43,7 +43,7 @@ function Header() {
             </div>
           </>
         )}
-        {isLoggedIn && (
+        {(isLoggedIn || token) && (
           <div className=" flex gap-8 ">
             <div className="register-button ">
               <button
@@ -63,7 +63,7 @@ function Header() {
             </button>
           </div>
         )}
-        {!isLoggedIn && (
+        {!isLoggedIn && !token && (
           <div className="flex">
             <div className="Signin-button ">
               <button

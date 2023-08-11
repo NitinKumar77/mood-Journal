@@ -14,7 +14,6 @@ export default function Modal() {
   const { notificationHandler } = useNotificationContext();
 
   const isSending = useSelector((state) => state.mood.isSending);
-  const sendDataStatus = useSelector((state) => state.mood.sendDataStatus);
   const dispatch = useDispatch();
   const [moodData, setMoodData] = useState({});
   const [highlightedCard, setHighlightedCard] = useState("");
@@ -26,13 +25,7 @@ export default function Modal() {
     ) {
       setMoodData({});
       dispatch(postMoodListThunk(moodData));
-      notificationHandler({
-        type: sendDataStatus,
-        message:
-          sendDataStatus === "success"
-            ? "Data Registered Successfully"
-            : "Data Registration Error",
-      });
+
       closeModal();
     }
   };

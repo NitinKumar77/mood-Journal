@@ -12,13 +12,12 @@ function Root() {
   const { isModalOpen, isSignupModalOpen } = useModalContext();
   const { showNotification } = useNotificationContext();
   const token = useLoaderData();
-  console.log(token);
   return (
     <div className="w-full">
       {!isSignupModalOpen && <Header />}
       <Outlet />
-      {<SignUpModal />}
-      {isModalOpen && <Modal />}
+      {isSignupModalOpen && <SignUpModal />}
+      {isModalOpen && token && <Modal />}
       {showNotification && <Notification />}
     </div>
   );

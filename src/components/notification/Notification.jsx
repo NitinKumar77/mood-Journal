@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNotificationContext } from "../../context/NotificationContextProvider";
+import { useSelector } from "react-redux";
 
 function Notification() {
   const { showNotification, message, type } = useNotificationContext();
   const [progress, setProgress] = useState(100);
-
+  const notifications = useSelector(
+    (state) => state.notifications.notificationData
+  );
   useEffect(() => {
     let interval;
 

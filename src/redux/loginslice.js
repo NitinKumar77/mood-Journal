@@ -26,7 +26,6 @@ const loginSlice = createSlice({
 });
 
 export const loginThunk = (loginDetail, mode = "signup") => {
-  console.log("logindetail", loginDetail);
   return async (dispatch, getState) => {
     const authLoginDetails = async () => {
       const response = await fetch(`http://localhost:8080/api/auth/${mode}`, {
@@ -45,8 +44,8 @@ export const loginThunk = (loginDetail, mode = "signup") => {
     };
     try {
       const data = await authLoginDetails();
-      const token = data.token;
-      localStorage.setItem("token", token);
+      const token = data.data.token;
+      localStorage.setItem("moodjournal-accesstoken", token);
       console.log(token);
       dispatch(setLoggedIn(true));
       dispatch(setToken(token));
