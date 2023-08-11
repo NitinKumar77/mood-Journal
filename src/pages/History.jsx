@@ -18,7 +18,7 @@ function History() {
     return () => dispatch(getMoodListThunk());
   }, [dispatch]);
 
-  const isDataFetched = useSelector((state) => !!state.mood.data.length);
+  const isDataFetched = useSelector((state) => !!state.mood?.data.length);
 
   useEffect(() => {
     if (!isDataFetched) {

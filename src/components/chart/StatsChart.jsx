@@ -85,7 +85,7 @@ export default function StatsCharts({ searchParams }) {
   };
 
   return (
-    <div className="mx-auto flex justify-center items-center my-20  max-h-96">
+    <div className="mx-auto mb-12 flex justify-center items-center my-20  max-h-96">
       {moodsData.length === 0 && (
         <div className="text-black mt-12 mb-8 dark:text-white text-center font-family-Outfit text-base font-normal leading-6 tracking-tighter flex flex-col items-center flex-shrink-0">
           Track your mood! Add a mood now.
